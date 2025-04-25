@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from .forms import HealthProgramForm
+from django.contrib import messages
 
 def home(request):
     return render(request, 'home.html')
@@ -29,3 +31,13 @@ def login_view(request):
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+def create_health_program(request):
+    form = HealthProgramForm()
+    if request.method == 'POST':
+        form = HealthProgramForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Health program created successfully!')
+            return redirect('dashboard')
+    return render(request, 'create_program.html', {'form': form})
