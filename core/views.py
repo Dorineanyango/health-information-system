@@ -4,7 +4,10 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import HealthProgramForm
 from django.contrib import messages
-from .forms import ClientForm 
+from .forms import ClientForm
+from .forms import EnrollmentForm 
+from .models import Client
+from django.db.models import Q
 
 def home(request):
     return render(request, 'home.html')
@@ -52,3 +55,27 @@ def register_client(request):
             messages.success(request, 'Client registered successfully!')
             return redirect('dashboard')
     return render(request, 'register_client.html', {'form': form})
+
+def enroll_client(request):
+    if request.method == 'POST':
+        form = EnrollmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Client enrolled successfully!')
+            return redirect('dashboard')
+    else:
+        form = EnrollmentForm()
+
+    return render(request, 'enroll_client.html', {'form': form})
+
+def search_clients(request):
+    query = request.GET.get('q', '')  # Default to an empty string if no query is provided
+    if query:
+        # Use Q objects to filter by name or contact with an OR condition
+        clients = Client.objects.filter(
+            Q(name__icontains=query) | Q(contact__icontains=query)
+        )
+    else:
+        # If no query, return all clients
+        clients = Client.objects.all()
+    return render(request, 'search_clients.html', {'clients': clients, 'query': query})

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Enroll Client{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+  <div class="col-md-6">
+    <div class="card shadow">
+      <div class="card-header bg-dark text-white">
+        <h5>Enroll New Client</h5>
+      </div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          {{ form|crispy }}  <!-- Make sure the form is being rendered with crispy filter -->
+          <button type="submit" class="btn btn-dark w-100">Enroll Client</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

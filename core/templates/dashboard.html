@@ -13,9 +13,21 @@
               <i class="bi bi-plus-circle me-2"></i> Create Health Program
             </a>
           </li>
-      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person-plus me-2"></i> Register Client</a></li>
-      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person-check me-2"></i> Enroll Client</a></li>
-      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-search me-2"></i> Search Client</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register_client' %}">
+              <i class="bi bi-person-plus me-2"></i> Register Client
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'enroll_client' %}">
+              <i class="bi bi-person-check me-2"></i> Enroll Client
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'search_clients' %}">
+              <i class="bi bi-search me-2"></i> Search Client
+            </a>
+          </li>
       <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-people me-2"></i> View Clients</a></li>
     </ul>
   </div>
