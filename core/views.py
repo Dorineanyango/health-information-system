@@ -11,10 +11,10 @@ def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('dashboard')
+            form.save()
+            return redirect('login')  # 👈 redirect to login instead of dashboard
     return render(request, 'register.html', {'form': form})
+
 
 def login_view(request):
     form = AuthenticationForm()

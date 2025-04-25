@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | Health Info{% endblock %}
+
+{% block content %}
+<div class="row">
+  <!-- Sidebar -->
+  <div class="col-md-3 bg-light border-end py-4">
+    <h4 class="text-center mb-4">Menu</h4>
+    <ul class="nav flex-column px-3">
+      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-plus-circle me-2"></i> Create Health Program</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person-plus me-2"></i> Register Client</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person-check me-2"></i> Enroll Client</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-search me-2"></i> Search Client</a></li>
+      <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-people me-2"></i> View Clients</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="col-md-9 py-4">
+    <h2 class="mb-4">Dashboard Overview</h2>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Total Clients</h5>
+            <p class="card-text fs-4">0</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Health Programs</h5>
+            <p class="card-text fs-4">0</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-white bg-warning mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Total Enrollments</h5>
+            <p class="card-text fs-4">0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
