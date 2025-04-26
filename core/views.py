@@ -10,7 +10,8 @@ from .models import Client,Enrollment,HealthProgram
 from django.db.models import Q
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import ClientProfileSerializer
+from .serializers import ClientProfileSerializer,HealthProgramSerializer, ClientSerializer
+
 
 def home(request):
     return render(request, 'home.html')
@@ -109,6 +110,60 @@ def client_profile(request, client_id):
         'client': client,
         'enrollments': enrollments,
     })
+
+# New API: Create Health Program
+@api_view(['POST'])
+def create_health_program_api(request):
+    serializer = HealthProgramSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
+# New API: Register Client
+@api_view(['POST'])
+def register_client_api(request):
+    serializer = ClientSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
+# New API: Enroll Client in Programs
+@api_view(['POST'])
+def enroll_client_api(request):
+    # Extract client_id and program_ids from the request
+    client_id = request.data.get('client_id')
+    program_ids = request.data.get('program_ids', [])
+    print(f"Client ID: {client_id}, Program IDs: {program_ids}")  # Debug statement
+
+    # Check if the client exists
+    try:
+        client = Client.objects.get(id=client_id)
+    except Client.DoesNotExist:
+        return Response({'error': 'Client not found'}, status=404)
+
+    # Enroll the client in the specified programs
+    enrollments = []
+    for program_id in program_ids:
+        try:
+            program = HealthProgram.objects.get(id=program_id)
+            enrollment = Enrollment.objects.create(client=client, program=program)
+            enrollments.append(enrollment)
+            print(f"Enrolled in Program ID: {program_id}")  # Debug statement
+        except HealthProgram.DoesNotExist:
+            return Response({'error': f'Program with id {program_id} not found'}, status=404)
+
+    # Return a success response
+    return Response({'message': 'Client enrolled successfully!'}, status=201)
+
+# New API: Search Clients
+@api_view(['GET'])
+def search_clients_api(request):
+    query = request.GET.get('q', '')
+    clients = Client.objects.filter(Q(name__icontains=query) | Q(contact__icontains=query))
+    serializer = ClientSerializer(clients, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def client_profile_api(request, client_id):

@@ -6,6 +6,11 @@ class HealthProgramSerializer(serializers.ModelSerializer):
         model = HealthProgram
         fields = ['id', 'name', 'description']
 
+class ClientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Client
+        fields = ['id', 'name', 'age', 'gender', 'contact']        
+
 class EnrollmentSerializer(serializers.ModelSerializer):
     program = HealthProgramSerializer()
 

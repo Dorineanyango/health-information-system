@@ -13,6 +13,12 @@ urlpatterns = [
     path('enroll-client/', views.enroll_client, name='enroll_client'),
     path('search/', views.search_clients, name='search_clients'),
     path('client/<int:client_id>/', views.client_profile, name='client_profile'),
+
+    # API routes
+    path('api/create-program/', views.create_health_program_api, name='create_health_program_api'),
+    path('api/register-client/', views.register_client_api, name='register_client_api'),
+    path('api/enroll-client/', views.enroll_client_api, name='enroll_client_api'),
+    path('api/search-clients/', views.search_clients_api, name='search_clients_api'),
     path('api/client/<int:client_id>/', views.client_profile_api, name='client_profile_api'),
     
 ]
