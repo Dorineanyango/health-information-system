@@ -8,6 +8,9 @@ from .forms import ClientForm
 from .forms import EnrollmentForm 
 from .models import Client,Enrollment,HealthProgram
 from django.db.models import Q
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import ClientProfileSerializer
 
 def home(request):
     return render(request, 'home.html')
@@ -106,3 +109,13 @@ def client_profile(request, client_id):
         'client': client,
         'enrollments': enrollments,
     })
+
+@api_view(['GET'])
+def client_profile_api(request, client_id):
+    try:
+        client = Client.objects.get(id=client_id)
+    except Client.DoesNotExist:
+        return Response({'error': 'Client not found'}, status=404)
+
+    serializer = ClientProfileSerializer(client)
+    return Response(serializer.data)
