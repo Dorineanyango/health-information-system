@@ -13,10 +13,9 @@ class ClientForm(forms.ModelForm):
         model = Client
         fields = ['name', 'age', 'gender', 'contact'] 
 
-class EnrollmentForm(forms.ModelForm):
-    class Meta:
-        model = Enrollment
-        fields = ['client', 'program']  # Client and Program fields
-
-    client = forms.ModelChoiceField(queryset=Client.objects.all(), empty_label="Select Client")
-    program = forms.ModelMultipleChoiceField(queryset=HealthProgram.objects.all(), widget=forms.CheckboxSelectMultiple)               
+class EnrollmentForm(forms.Form):
+    client = forms.ModelChoiceField(queryset=Enrollment._meta.get_field('client').related_model.objects.all())
+    program = forms.ModelMultipleChoiceField(
+        queryset=HealthProgram.objects.all(),
+        widget=forms.CheckboxSelectMultiple  # or SelectMultiple
+    )

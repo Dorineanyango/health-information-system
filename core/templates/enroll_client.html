@@ -13,8 +13,8 @@
       <div class="card-body">
         <form method="post">
           {% csrf_token %}
-          {{ form|crispy }}  <!-- Make sure the form is being rendered with crispy filter -->
-          <button type="submit" class="btn btn-dark w-100">Enroll Client</button>
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Enroll client</button>
         </form>
       </div>
     </div>

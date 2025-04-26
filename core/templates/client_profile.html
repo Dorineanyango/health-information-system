@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Client Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Client Profile</h2>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h5 class="card-title">{{ client.name }}</h5>
+      <p class="card-text"><strong>Age:</strong> {{ client.age }}</p>
+      <p class="card-text"><strong>Gender:</strong> {{ client.get_gender_display }}</p>
+      <p class="card-text"><strong>Contact:</strong> {{ client.contact }}</p>
+    </div>
+  </div>
+
+  <h4>Programs Enrolled</h4>
+  <div class="table-responsive mt-3">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Program Name</th>
+          <th>Enrollment Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for enrollment in enrollments %}
+        <tr>
+          <td>{{ enrollment.program.name }}</td>
+          <td>{{ enrollment.enrolled_on|date:"F d, Y" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="2">No programs enrolled yet.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -12,6 +12,10 @@ urlpatterns = [
     path('register-client/', views.register_client, name='register_client'),
     path('enroll-client/', views.enroll_client, name='enroll_client'),
     path('search/', views.search_clients, name='search_clients'),
+    path('client/<int:client_id>/', views.client_profile, name='client_profile'),
+    
+
+
 
 
 ]
