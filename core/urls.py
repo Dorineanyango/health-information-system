@@ -1,6 +1,8 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView  # Import LogoutView
 from . import views
+from .views import schema_view
+
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -20,5 +22,11 @@ urlpatterns = [
     path('api/enroll-client/', views.enroll_client_api, name='enroll_client_api'),
     path('api/search-clients/', views.search_clients_api, name='search_clients_api'),
     path('api/client/<int:client_id>/', views.client_profile_api, name='client_profile_api'),
+
+    
+    # Other URLs
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+   
     
 ]
