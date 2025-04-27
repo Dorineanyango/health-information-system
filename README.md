@@ -58,5 +58,5 @@ Follow these steps to set up the project on your local machine:
    python manage.py runserver
 
 6. **Access the Application** 
-     [Open your browser and go to](http://127.0.0.1:8000)          
+   [Open your browser and go to](http://127.0.0.1:8000)          
      

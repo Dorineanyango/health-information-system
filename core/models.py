@@ -1,5 +1,6 @@
 from django.db import models
 
+# Model representing a health program
 class HealthProgram(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
@@ -7,6 +8,7 @@ class HealthProgram(models.Model):
     def __str__(self):
         return self.name
 
+#Model representing a client
 class Client(models.Model):
     name = models.CharField(max_length=100)
     age = models.PositiveIntegerField()
@@ -17,6 +19,7 @@ class Client(models.Model):
     def __str__(self):
         return self.name
 
+# Model representing the enrollment of a client in a health program
 class Enrollment(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     program = models.ForeignKey(HealthProgram, on_delete=models.CASCADE)

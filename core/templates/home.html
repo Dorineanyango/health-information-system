@@ -4,10 +4,12 @@
 {% block title %}Home | Health Info{% endblock %}
 
 {% block content %}
-<div class="text-center">
-  <h1 class="mb-4">Welcome to the Health Info System</h1>
-  <p class="lead mb-4">Manage clients and health programs efficiently.</p>
-  <a href="{% url 'register' %}" class="btn btn-success btn-lg me-3">Get Started</a>
-  <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login</a>
+<div style="background-image: url('/static/images/background.jpg'); background-size: cover; background-position: center; height: 100vh; display: flex; align-items: center; justify-content: center;">
+  <div class="text-center text-white" style="background-color: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+    <h1 class="mb-4">Welcome to the Health Info System</h1>
+    <p class="lead mb-4">Manage clients and health programs efficiently.</p>
+    <a href="{% url 'register' %}" class="btn btn-success btn-lg me-3">Register</a>
+    <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login</a>
+  </div>
 </div>
 {% endblock %}

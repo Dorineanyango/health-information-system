@@ -3,7 +3,6 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from .models import Client, HealthProgram, Enrollment
 
-# Create your tests here.
 #Test for Creating a Health Program
 class HealthProgramAPITestCase(APITestCase):
     def test_create_health_program(self):
@@ -50,7 +49,7 @@ class EnrollmentAPITestCase(APITestCase):
         
         # Check that two enrollments were created
         self.assertEqual(Enrollment.objects.filter(client=self.client_obj).count(), 2)
-        
+
 # Test for Searching Clients
 class SearchClientsAPITestCase(APITestCase):
     def setUp(self):
