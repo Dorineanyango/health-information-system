@@ -12,8 +12,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from .serializers import ClientProfileSerializer,HealthProgramSerializer, ClientSerializer
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
 
 
 # -------------------- Web Application Views --------------------
@@ -187,20 +185,4 @@ def client_profile_api(request, client_id):
 
     serializer = ClientProfileSerializer(client)
     return Response(serializer.data)
-
-# -------------------- Swagger Documentation --------------------
-
-# Swagger schema view for API documentation
-schema_view = get_schema_view(
-    openapi.Info(
-        title="Health Info System API",
-        default_version='v1',
-        description="API documentation for the Health Info System",
-        terms_of_service="https://www.example.com/terms/",
-        contact=openapi.Contact(email="anyangodorine474@gmail.com"),
-        license=openapi.License(name="MIT License"),
-    ),
-    public=True,
-    permission_classes=(AllowAny,),
-)
 

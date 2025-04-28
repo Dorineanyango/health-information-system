@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView  # Import LogoutView for user logout functionality
 from . import views
-from .views import schema_view  # Import schema_view for Swagger and ReDoc API documentation
+
 
 # Define URL patterns for the application
 urlpatterns = [
@@ -24,7 +24,5 @@ urlpatterns = [
     path('api/search-clients/', views.search_clients_api, name='search_clients_api'),  # API to search for clients
     path('api/client/<int:client_id>/', views.client_profile_api, name='client_profile_api'),  # API to view a client's profile
 
-    # Swagger and ReDoc API documentation
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),  # Swagger UI
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),  # ReDoc UI
+   
 ]
