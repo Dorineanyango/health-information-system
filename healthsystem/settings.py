@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['health-information-system-yrhi.onrender.com', '127.0.0.1']
 
 
 # Application definition
